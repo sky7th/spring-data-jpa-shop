@@ -14,14 +14,14 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public Long join(MemberDto memberDto) {
-        validateDuplicateMember(memberDto);
-        Member member = memberRepository.save(memberDto.toMember());
+    public Long join(Member member) {
+        validateDuplicateMember(member);
+        memberRepository.save(member);
         return member.getId();
     }
 
-    private void validateDuplicateMember(MemberDto memberDto) {
-        List<Member> findMembers = memberRepository.findAllByName(memberDto.getName());
+    private void validateDuplicateMember(Member member) {
+        List<Member> findMembers = memberRepository.findAllByName(member.getName());
         if (!findMembers.isEmpty()) {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }

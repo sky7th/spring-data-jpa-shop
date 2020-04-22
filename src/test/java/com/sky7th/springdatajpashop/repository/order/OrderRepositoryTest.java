@@ -16,10 +16,12 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @RunWith(SpringRunner.class)
+@Transactional
 @SpringBootTest
 public class OrderRepositoryTest {
 
@@ -36,29 +38,26 @@ public class OrderRepositoryTest {
     public void test() throws Exception {
 
         //Given
-        MemberDto memberDto = createMember("태화");
+        Member member = createMember("태화");
         Book book = createItem("꿀잼책", 10);
-        orderService.order(memberDto.getId(), book.getId(), 1);
+        orderService.order(member.getId(), book.getId(), 1);
 
         //When
         OrderSearch orderSearch = OrderSearch.builder()
-                .memberName("hello")
+                .memberName("태화")
                 .orderStatus(OrderStatus.ORDER)
                 .build();
 
         List<Order> search = orderRepository.search(orderSearch);
-        search.forEach(v -> {
-            System.out.println(v.getMember().getName()+" "+v.getOrderItems().get(0).getItem().getName());
-        });
 
         //Then
         Assert.assertEquals(1, search.size());
     }
 
-    private MemberDto createMember(String name) {
-        MemberDto memberDto = MemberDto.builder().name(name).build();
-        Long memberId = memberService.join(memberDto);
-        return MemberDto.builder().id(memberId).name(name).build();
+    private Member createMember(String name) {
+        Member member = Member.builder().name(name).build();
+        memberService.join(member);
+        return member;
     }
 
     private Book createItem(String name, int stockQuantity) {

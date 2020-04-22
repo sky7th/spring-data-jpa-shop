@@ -52,6 +52,7 @@ public class Order {
                 .delivery(delivery)
                 .status(OrderStatus.ORDER)
                 .orderDate(new Date())
+                .orderItems(new ArrayList<>())
                 .build();
 
         for (OrderItem orderItem : orderItems) {

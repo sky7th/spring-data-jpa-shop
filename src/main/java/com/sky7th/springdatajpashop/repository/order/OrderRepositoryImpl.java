@@ -23,7 +23,7 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom {
     @Override
     public List<Order> search(OrderSearch orderSearch) {
         return queryFactory.selectFrom(order)
-                .leftJoin(member).fetchJoin()
+                .leftJoin(order.member).fetchJoin()
                 .where(equalOrderStatus(orderSearch), containName(orderSearch))
                 .fetch();
     }
@@ -32,7 +32,7 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom {
         if (!StringUtils.hasText(orderSearch.getMemberName())) {
             return null;
         }
-        return member.name.contains(orderSearch.getMemberName());
+        return order.member.name.contains(orderSearch.getMemberName());
     }
 
     private BooleanExpression equalOrderStatus(OrderSearch orderSearch) {

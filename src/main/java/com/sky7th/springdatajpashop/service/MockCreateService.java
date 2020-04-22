@@ -19,7 +19,7 @@ public class MockCreateService {
 
     @PostConstruct
     public void initCreateMock() {
-        MemberDto member = MemberDto.builder()
+        Member member = Member.builder()
                 .name("회원1")
                 .address(Address.builder().city("고담").street("굴다리").zipcode("123-123").build())
                 .build();
