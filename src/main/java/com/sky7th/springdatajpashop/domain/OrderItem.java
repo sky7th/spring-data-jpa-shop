@@ -28,4 +28,16 @@ public class OrderItem {
     private int orderPrice;
     private int count;
 
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public void cancel() {
+        this.item.addStock(this.count);
+    }
+
+    public int getTotalPrice() {
+        return this.orderPrice * this.count;
+    }
+
 }
