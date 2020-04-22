@@ -1,0 +1,44 @@
+package com.sky7th.springdatajpashop.repository.order;
+
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.DslExpression;
+import com.querydsl.jpa.JPQLQuery;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.sky7th.springdatajpashop.domain.Order;
+import com.sky7th.springdatajpashop.domain.OrderStatus;
+import com.sky7th.springdatajpashop.service.dto.OrderSearch;
+import lombok.RequiredArgsConstructor;
+import org.springframework.util.StringUtils;
+
+import java.util.List;
+
+import static com.sky7th.springdatajpashop.domain.QOrder.order;
+import static com.sky7th.springdatajpashop.domain.QMember.member;
+
+@RequiredArgsConstructor
+public class OrderRepositoryImpl implements OrderRepositoryCustom {
+
+    private final JPAQueryFactory queryFactory;
+
+    @Override
+    public List<Order> search(OrderSearch orderSearch) {
+        return queryFactory.selectFrom(order)
+                .leftJoin(member).fetchJoin()
+                .where(equalOrderStatus(orderSearch), containName(orderSearch))
+                .fetch();
+    }
+
+    private BooleanExpression containName(OrderSearch orderSearch) {
+        if (!StringUtils.hasText(orderSearch.getMemberName())) {
+            return null;
+        }
+        return member.name.contains(orderSearch.getMemberName());
+    }
+
+    private BooleanExpression equalOrderStatus(OrderSearch orderSearch) {
+        if (orderSearch.getOrderStatus() == null) {
+            return null;
+        }
+        return order.status.eq(orderSearch.getOrderStatus());
+    }
+}

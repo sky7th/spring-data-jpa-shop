@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -45,15 +46,17 @@ public class Order {
         this.status = status;
     }
 
-    public static Order createOrder(Member member, Delivery delivery, List<OrderItem> orderItems) {
+    public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItems) {
         Order order = Order.builder()
                 .member(member)
                 .delivery(delivery)
                 .status(OrderStatus.ORDER)
                 .orderDate(new Date())
                 .build();
-        orderItems.forEach(order::addOrderItem);
 
+        for (OrderItem orderItem : orderItems) {
+            order.addOrderItem(orderItem);
+        }
         return order;
     }
 

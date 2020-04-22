@@ -1,6 +1,7 @@
 package com.sky7th.springdatajpashop.domain;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -25,6 +26,7 @@ public class Delivery {
     @Enumerated(EnumType.STRING)
     private DeliveryStatus status;
 
+    @Builder
     public Delivery(Address address) {
         this.address = address;
         this.status = DeliveryStatus.READY;

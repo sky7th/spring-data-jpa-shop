@@ -1,6 +1,7 @@
 package com.sky7th.springdatajpashop.domain;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -25,4 +26,9 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 
+    @Builder
+    public Member(String name, Address address) {
+        this.name = name;
+        this.address = address;
+    }
 }

@@ -2,6 +2,7 @@ package com.sky7th.springdatajpashop.domain;
 
 import com.sky7th.springdatajpashop.domain.item.Item;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -27,6 +28,25 @@ public class OrderItem {
 
     private int orderPrice;
     private int count;
+
+    @Builder
+    public OrderItem(Item item, Order order, int orderPrice, int count) {
+        this.item = item;
+        this.order = order;
+        this.orderPrice = orderPrice;
+        this.count = count;
+    }
+
+    public static OrderItem createOrderItem(Item item, int orderPrice, int count) {
+        OrderItem orderItem = OrderItem.builder()
+                .item(item)
+                .orderPrice(orderPrice)
+                .count(count)
+                .build();
+        item.removeStock(count);
+
+        return orderItem;
+    }
 
     public void setOrder(Order order) {
         this.order = order;
