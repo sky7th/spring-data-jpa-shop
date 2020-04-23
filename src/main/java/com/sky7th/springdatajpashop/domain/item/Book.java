@@ -1,6 +1,6 @@
 package com.sky7th.springdatajpashop.domain.item;
 
-import lombok.AllArgsConstructor;
+import com.sky7th.springdatajpashop.dto.item.ItemSaveRequestDto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,7 @@ import javax.persistence.Entity;
 @Getter
 @NoArgsConstructor
 @Entity
-@DiscriminatorValue("B")
+@DiscriminatorValue("BOOK")
 public class Book extends Item {
 
     private String author;
@@ -22,5 +22,11 @@ public class Book extends Item {
         super(name, price, stockQuantity);
         this.author = author;
         this.isbn = isbn;
+    }
+
+    public void update(ItemSaveRequestDto dto) {
+        super.update(dto);
+        this.author = dto.getAuthor();
+        this.isbn = dto.getIsbn();
     }
 }

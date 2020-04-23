@@ -1,4 +1,4 @@
-package com.sky7th.springdatajpashop.service.dto;
+package com.sky7th.springdatajpashop.dto;
 
 import com.sky7th.springdatajpashop.domain.OrderStatus;
 import lombok.Builder;

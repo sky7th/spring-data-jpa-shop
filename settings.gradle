@@ -5,5 +5,3 @@ pluginManagement {
 }
 
 rootProject.name = 'spring-data-jpa-shop'
-
-include 'spring-data-jpa-shop'

@@ -1,9 +1,9 @@
 package com.sky7th.springdatajpashop.domain.item;
 
 import com.sky7th.springdatajpashop.domain.Category;
+import com.sky7th.springdatajpashop.domain.common.BaseTimeEntity;
+import com.sky7th.springdatajpashop.dto.item.ItemSaveRequestDto;
 import com.sky7th.springdatajpashop.exception.NotEnoughStockException;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -15,8 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "DTYPE")
-public abstract class Item {
+@DiscriminatorColumn(name = "ITEM_TYPE")
+public abstract class Item extends BaseTimeEntity {
 
     @Id @GeneratedValue
     @Column(name = "ITEM_ID")
@@ -45,6 +45,17 @@ public abstract class Item {
             throw new NotEnoughStockException("need more stock!");
         }
         this.stockQuantity = restStock;
+    }
+
+    public void update(ItemSaveRequestDto dto) {
+        this.name = dto.getName();
+        this.price = dto.getPrice();
+        this.stockQuantity = dto.getStockQuantity();
+    }
+
+    @Transient
+    public String getDecriminatorValue() {
+        return this.getClass().getAnnotation(DiscriminatorValue.class).value();
     }
 
 }

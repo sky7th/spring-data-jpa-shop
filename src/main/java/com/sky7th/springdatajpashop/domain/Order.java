@@ -1,5 +1,6 @@
 package com.sky7th.springdatajpashop.domain;
 
+import com.sky7th.springdatajpashop.domain.common.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,7 +16,7 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name = "ORDERS")
-public class Order {
+public class Order extends BaseTimeEntity {
 
     @Id @GeneratedValue
     @Column(name = "ORDER_ID")
