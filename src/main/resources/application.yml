@@ -5,6 +5,10 @@ spring:
     password:
     driver-class-name: org.h2.Driver
 
+  h2:
+    console:
+      enabled: true
+
   jpa:
     database-platform: H2
     hibernate:
@@ -13,3 +17,9 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
+#
+#  mustache:
+#    check-template-location: true
+#    enabled: true
+#    prefix: classpath:/templates/
+#    suffix: .mustache

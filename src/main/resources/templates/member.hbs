@@ -1,0 +1,37 @@
+{{>layout/header}}
+<body>
+<div class="wrapper">
+    {{>layout/body-header}}
+    <div class="m-category">
+    </div>
+    <main>
+        <div class="main-section">
+            <div class="container">
+                <div class="main-section-data">
+                    <div class="row">
+                        {{>layout/body-left}}
+                        <div class="col-lg-6">
+                            <div class="main-ws-sec">
+                                <div class="posts-section" id="posts-section">
+                                    <h1>얍</h1>
+                                    <div>회원 기능</div>
+                                    <div>
+                                        <a class="btn btn-lg btn-primary" href="/members/join">회원 가입</a>
+                                        <a class="btn btn-lg btn-primary" href="/members">회원 목록</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{>layout/body-right}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+{{>layout/js}}
+
+</body>
+
+{{>layout/footer}}

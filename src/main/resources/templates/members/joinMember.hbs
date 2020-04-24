@@ -1,0 +1,50 @@
+{{>layout/header}}
+<body>
+<div class="wrapper">
+    {{>layout/body-header}}
+    <div class="m-category">
+    </div>
+    <main>
+        <div class="main-section">
+            <div class="container">
+                <div class="main-section-data">
+                    <div class="row">
+                        {{>layout/body-left}}
+                        <div class="col-lg-6">
+                            <div class="main-ws-sec">
+                                <div class="posts-section" id="posts-section">
+                                    <form role="form" action="/members" method="post">
+                                        <div class="form-group">
+                                            <label for="inputName">이름</label>
+                                            <input type="text" name="name" class="form-control" id="inputName" placeholder="이름을 입력하세요">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="city">도시</label>
+                                            <input type="text" name="city" class="form-control" id="city" placeholder="도시를 입력하세요">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="street">거리</label>
+                                            <input type="text" name="street" class="form-control" id="street" placeholder="거리를 입력하세요">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="zipcode">우편번호</label>
+                                            <input type="text" name="zipcode" class="form-control" id="zipcode" placeholder="우편번호를 입력하세요">
+                                        </div>
+                                        <button type="submit" class="btn btn-default">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        {{>layout/body-right}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+{{>layout/js}}
+
+</body>
+
+{{>layout/footer}}

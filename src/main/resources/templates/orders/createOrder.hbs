@@ -1,0 +1,60 @@
+{{>layout/header}}
+<body>
+<div class="wrapper">
+    {{>layout/body-header}}
+    <div class="m-category">
+    </div>
+    <main>
+        <div class="main-section">
+            <div class="container">
+                <div class="main-section-data">
+                    <div class="row">
+                        {{>layout/body-left}}
+                        <div class="col-lg-6">
+                            <div class="main-ws-sec">
+                                <div class="posts-section" id="posts-section">
+                                    <form role="form" action="/orders" method="post">
+
+                                        <div class="form-group">
+                                            <label for="member">주문회원</label>
+                                            <select name="memberId" id="member" class="form-control">
+                                                <option value="">회원선택</option>
+                                                {{#members}}
+                                                    <option value="{{id}}">{{name}}</option>
+                                                {{/members}}
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="item">상품명</label>
+                                            <select name="itemId" id="item" class="form-control">
+                                                <option value="">상품선택</option>
+                                                {{#items}}
+                                                    <option value="{{id}}">{{name}}</option>
+                                                {{/items}}
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="count">주문수량</label>
+                                            <input type="number" name="count" class="form-control" id="count" placeholder="주문 수량을 입력하세요">
+                                        </div>
+
+                                        <button type="submit" class="btn btn-default">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        {{>layout/body-right}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+{{>layout/js}}
+
+</body>
+
+{{>layout/footer}}

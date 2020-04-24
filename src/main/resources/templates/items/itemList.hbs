@@ -1,0 +1,57 @@
+{{>layout/header}}
+<body>
+<div class="wrapper">
+    {{>layout/body-header}}
+    <div class="m-category">
+    </div>
+    <main>
+        <div class="main-section">
+            <div class="container">
+                <div class="main-section-data">
+                    <div class="row">
+                        {{>layout/body-left}}
+                        <div class="col-lg-6">
+                            <div class="main-ws-sec">
+                                <div class="posts-section" id="posts-section">
+                                    <div>
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>상품명</th>
+                                                <th>가격</th>
+                                                <th>재고수량</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {{#items}}
+                                                <tr>
+                                                    <td>{{id}}</td>
+                                                    <td>{{name}}</td>
+                                                    <td>{{price}}</td>
+                                                    <td>{{stockQuantity}}</td>
+                                                    <td>
+                                                        <a href="/items/update/{{id}}" class="btn btn-primary" role="button">수정</a>
+                                                    </td>
+                                                </tr>
+                                            {{/items}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{>layout/body-right}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+{{>layout/js}}
+
+</body>
+
+{{>layout/footer}}
