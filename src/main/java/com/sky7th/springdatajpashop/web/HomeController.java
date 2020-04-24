@@ -11,4 +11,19 @@ public class HomeController {
         return "home";
     }
 
+    @GetMapping("/member")
+    public String member() {
+        return "member";
+    }
+
+    @GetMapping("/item")
+    public String item() {
+        return "item";
+    }
+
+    @GetMapping("/order")
+    public String order() {
+        return "order";
+    }
+
 }

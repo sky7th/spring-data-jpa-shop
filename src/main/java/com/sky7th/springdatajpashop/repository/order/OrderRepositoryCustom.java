@@ -1,7 +1,7 @@
 package com.sky7th.springdatajpashop.repository.order;
 
 import com.sky7th.springdatajpashop.domain.Order;
-import com.sky7th.springdatajpashop.dto.OrderSearch;
+import com.sky7th.springdatajpashop.dto.order.OrderSearch;
 
 import java.util.List;
 

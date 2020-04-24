@@ -37,6 +37,7 @@ dependencies {
     testImplementation 'org.projectlombok:lombok'
     compile 'com.h2database:h2'
     compile('org.springframework.boot:spring-boot-starter-mustache')
+    compile 'pl.allegro.tech.boot:handlebars-spring-boot-starter:0.3.0'
     compile 'com.querydsl:querydsl-jpa'
     compile 'com.querydsl:querydsl-apt'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {

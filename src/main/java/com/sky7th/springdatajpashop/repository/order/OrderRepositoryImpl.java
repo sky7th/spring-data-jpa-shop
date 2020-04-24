@@ -3,6 +3,7 @@ package com.sky7th.springdatajpashop.repository.order;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.sky7th.springdatajpashop.domain.Order;
+import com.sky7th.springdatajpashop.dto.order.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.util.StringUtils;
 

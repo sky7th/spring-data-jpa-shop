@@ -1,12 +1,11 @@
-package com.sky7th.springdatajpashop.dto;
+package com.sky7th.springdatajpashop.dto.order;
 
 import com.sky7th.springdatajpashop.domain.OrderStatus;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
-@RequiredArgsConstructor
+@NoArgsConstructor
 @Getter
+@Setter
 public class OrderSearch {
 
     private String memberName;

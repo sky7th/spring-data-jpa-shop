@@ -5,12 +5,17 @@ import com.sky7th.springdatajpashop.domain.Member;
 import com.sky7th.springdatajpashop.domain.Order;
 import com.sky7th.springdatajpashop.domain.OrderItem;
 import com.sky7th.springdatajpashop.domain.item.Item;
+import com.sky7th.springdatajpashop.dto.order.OrderMainResponseDto;
+import com.sky7th.springdatajpashop.dto.order.OrderSearch;
 import com.sky7th.springdatajpashop.repository.ItemRepository;
 import com.sky7th.springdatajpashop.repository.MemberRepository;
 import com.sky7th.springdatajpashop.repository.order.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -19,6 +24,13 @@ public class OrderService {
     private final MemberRepository memberRepository;
     private final OrderRepository orderRepository;
     private final ItemRepository itemRepository;
+
+
+    @Transactional(readOnly = true)
+    public List<OrderMainResponseDto> findAll(OrderSearch orderSearch) {
+        return orderRepository.search(orderSearch).stream()
+                .map(OrderMainResponseDto::new).collect(Collectors.toList());
+    }
 
     @Transactional
     public Long order(Long memberId, Long itemId, int count) {
@@ -37,11 +49,13 @@ public class OrderService {
     }
 
     @Transactional
-    public void cancelOrder(Long orderId) {
+    public Long cancelOrder(Long orderId) {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new IllegalStateException("해당 order가 존재하지 않습니다. id=" + orderId));
 
         order.cancel();
+
+        return order.getId();
     }
 
 }
